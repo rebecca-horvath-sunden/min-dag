@@ -2,6 +2,7 @@ import type { Task, TaskPeriod } from "../../types";
 import TaskCard from "../TaskCard/TaskCard";
 import "./TaskList.css";
 
+// Define the props for the task list and its task action handlers.
 interface TaskListProps {
   tasks: Task[];
   period: TaskPeriod;
@@ -10,6 +11,7 @@ interface TaskListProps {
   onDelete: (taskId: number) => void;
 }
 
+// Display a message if the task list is empty.
 function TaskList({
   tasks,
   period,

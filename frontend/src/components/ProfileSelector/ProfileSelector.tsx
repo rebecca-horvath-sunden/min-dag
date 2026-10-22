@@ -1,6 +1,7 @@
 import "./ProfileSelector.css";
 import type { Profile } from "../../types";
 
+// Define the props for selecting, creating, and deleting profiles.
 interface ProfileSelectorProps {
   profiles: Profile[];
   onSelectProfile: (profileId: number) => void;
@@ -9,6 +10,7 @@ interface ProfileSelectorProps {
   activeProfileId: number | null;
 }
 
+// Display the profiles and allow the user to select, create, or delete a profile.
 function ProfileSelector({
   profiles,
   activeProfileId,

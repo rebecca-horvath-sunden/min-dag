@@ -1,6 +1,8 @@
 import "./TaskCard.css";
 import type { Task, TaskPeriod } from "../../types";
 
+// Define the props for displaying a task and handling
+// its completion, undo, and deletion.
 interface TaskCardProps {
   task: Task;
   period: TaskPeriod;
@@ -9,6 +11,8 @@ interface TaskCardProps {
   onDelete: (taskId: number) => void;
 }
 
+// Get the task status for the selected period, 
+// defaulting to "todo" if no status is set.
 function TaskCard({
   task,
   period,

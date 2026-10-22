@@ -27,10 +27,11 @@
   border: 0.0625rem solid var(--border);
   border-radius: 0.875rem;
   background-color: #fff;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 
-/* Gemensam hover för profilrutor och skapa profil */
 .profile-item:hover,
 .profile-create-button:hover {
   background-color: rgb(120, 47, 161);
@@ -38,13 +39,11 @@
   color: #fff;
 }
 
-/* Texten i profilknappen följer hover-färgen */
 .profile-item:hover .profile-select-button {
   background-color: transparent;
   color: #fff;
 }
 
-/* Aktiv profil */
 .profile-item:has(.profile-select-button--active) {
   background-color: #e5d7f7;
   border-color: #7045a5;
@@ -56,13 +55,11 @@
   box-shadow: none;
 }
 
-/* Hover på aktiv profil */
 .profile-item:has(.profile-select-button--active):hover {
   background-color: rgb(120, 47, 161);
   border-color: rgb(120, 47, 161);
 }
 
-/* Profilknapp */
 .profile-select-button {
   min-height: 3.25rem;
   border: none;
@@ -73,7 +70,6 @@
   transition: color 0.2s ease;
 }
 
-/* Ta bort profil */
 .profile-delete-button {
   width: 1.75rem;
   height: 1.75rem;
@@ -87,16 +83,16 @@
   transition: background-color 0.2s ease;
 }
 
-/* Skapa profil */
 .profile-create-button {
   min-height: 2.75rem;
   border: 0.0625rem solid var(--text);
   border-radius: 0.625rem;
   padding: 0.625rem;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
-/* Mobil */
 @media (max-width: 37.5rem) {
   .profile-list {
     gap: 0.625rem;

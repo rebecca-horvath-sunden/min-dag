@@ -9,22 +9,35 @@ import CreateProfileModal from "./components/CreateProfilModal/CreateProfileModa
 import API_URL from "./api";
 
 function App() {
+  // Stores the profiles fetched from the backend
   const [profiles, setProfiles] = useState<Profile[]>([]);
+
+  // Tracks whether profiles are loading and whether an error occurred
   const [profilesLoading, setProfilesLoading] = useState(true);
   const [profilesError, setProfilesError] = useState("");
   const [profileActionError, setProfileActionError] = useState("");
+
+  // Stores the ID of the currently selected profile
   const [activeProfileId, setActiveProfileId] = useState<number | null>(() => {
     const savedProfileId = localStorage.getItem("activeProfileId");
     return savedProfileId ? Number(savedProfileId) : null;
   });
+
+  // Controls the visibility of the create-profile modal
   const [showCreateProfile, setShowCreateProfile] = useState(false);
+
+  // Stores tasks and tracks their loading and error states
   const [tasks, setTasks] = useState<Task[]>([]);
   const [tasksLoading, setTasksLoading] = useState(true);
   const [tasksError, setTasksError] = useState("");
   const [taskActionError, setTaskActionError] = useState("");
+
+  // Controls the completion message and the period selected for a new task
   const [showFinishedMessage, setShowFinishedMessage] = useState(false);
   const [addTaskPeriod, setAddTaskPeriod] = useState<TaskPeriod | null>(null);
 
+  // Fetch the profiles from the backend API.
+  // Parse the response as JSON and update the profiles state.
   useEffect(() => {
     fetch(`${API_URL}/api/profiles`)
       .then((response) => {
@@ -46,6 +59,8 @@ function App() {
       });
   }, []);
 
+  // Fetch the tasks from the backend API.
+  // Parse the response as JSON and update the tasks state.
   useEffect(() => {
     fetch(`${API_URL}/api/tasks`)
       .then((response) => {
@@ -67,6 +82,8 @@ function App() {
       });
   }, []);
 
+  // Update the active profile ID state with the selected profile ID.
+  // Save the active profile ID in local storage.
   const handleSelectProfile = (profileId: number) => {
     setActiveProfileId(profileId);
     localStorage.setItem("activeProfileId", String(profileId));
@@ -75,6 +92,9 @@ function App() {
     setProfileActionError("");
   };
 
+  // Send a POST request to the backend API to create a new profile.
+  // Set the content type to JSON and send the profile name and avatar in the request body.
+  // Add the new profile to the profiles state and close the create profile form.
   const handleCreateProfile = (name: string, avatar: string) => {
     setProfileActionError("");
 
@@ -101,6 +121,8 @@ function App() {
       });
   };
 
+  // Find the profile that matches the selected profile ID.
+  // Stop the function if the profile does not exist.
   const handleDeleteProfile = (profileId: number) => {
     const profileToDelete = profiles.find(
       (profile) => profile.id === profileId,
@@ -110,6 +132,9 @@ function App() {
       return;
     }
 
+    // Send a DELETE request to the backend API to remove the profile.
+    // Remove the deleted profile and its associated tasks from their respective states.
+    // If the deleted profile is active, reset the active profile and remove it from local storage.
     const confirmed = window.confirm(
       `Är du säker på att du vill ta bort profilen ${profileToDelete.name}?`,
     );
@@ -147,32 +172,40 @@ function App() {
       });
   };
 
+  // Find the currently active profile.
   const activeProfile = profiles.find(
     (profile) => profile.id === activeProfileId,
   );
 
+  // Filter the tasks to include only those belonging to the active profile.
   const profileTasks = tasks.filter(
     (task) => task.profileId === activeProfileId,
   );
 
+  // Define the task sections and their corresponding periods.
   const taskSections: { title: string; period: TaskPeriod }[] = [
     { title: "🌅 Morgon", period: "morning" },
     { title: "☀️ Under dagen", period: "day" },
     { title: "🌙 Kväll", period: "evening" },
   ];
 
+  // Check if the active profile has at least one task and all tasks are marked as done for every period.
   const allTasksDone =
     profileTasks.length > 0 &&
     profileTasks.every((task) =>
       task.period.every((period) => task.statusByPeriod[period] === "done"),
     );
 
+  // Hide the finished message if not all tasks are done.
+  // Run the effect whenever allTasksDone changes.
   useEffect(() => {
     if (!allTasksDone) {
       setShowFinishedMessage(false);
     }
   }, [allTasksDone]);
 
+  // Send a PATCH request to the backend API to update the task status for the specified period.
+  // Parse the response as JSON and update the task in the tasks state.
   const updateTaskStatus = (
     taskId: number,
     period: TaskPeriod,
@@ -207,13 +240,19 @@ function App() {
       });
   };
 
+  // Mark the task as done for the specified period.
   const handleComplete = (taskId: number, period: TaskPeriod) => {
     updateTaskStatus(taskId, period, "done");
   };
 
+  // Mark the task as not done for the specified period.
   const handleUndo = (taskId: number, period: TaskPeriod) => {
     updateTaskStatus(taskId, period, "todo");
   };
+
+  // Send a PATCH request to the backend API to start a new day for the active profile.
+  // Parse the response as JSON to get the updated tasks.
+  // Replace the active profile's tasks with the updated tasks.
   const handleNewDay = async () => {
     if (activeProfileId === null) return;
 
@@ -243,6 +282,9 @@ function App() {
     }
   };
 
+  // Ask the user to confirm the task deletion.
+  // Send a DELETE request to the backend API to remove the task.
+  // Remove the deleted task from the tasks state.
   const handleDelete = async (taskId: number) => {
     const confirmed = window.confirm(
       "Är du säker på att du vill ta bort uppgiften?",
@@ -269,6 +311,9 @@ function App() {
       });
   };
 
+  // Send a POST request to the backend API to create a new task for the active profile.
+  // Set the content type to JSON and send the profile ID, title, image, and periods in the request body.
+  // Parse the response as JSON and add the new task to the tasks state.
   const handleAddTask = (
     title: string,
     image: string,

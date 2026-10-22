@@ -2,13 +2,16 @@ import "./CreateProfileModal.css";
 import { useState } from "react";
 import type { FormEvent } from "react";
 
+// Define the props required by the create profile modal.
 interface CreateProfileModalProps {
   onCreateProfile: (name: string, avatar: string) => void;
   onCancel: () => void;
 }
-
+// Define the available avatar suggestions.
 const avatarSuggestions = ["👧", "👦", "🧒", "🐱", "🐶", "🦊"];
 
+// Initialize the profile name and default avatar.
+// Validate the form and create the profile with the selected name and avatar.
 function CreateProfileModal({
   onCreateProfile,
   onCancel,

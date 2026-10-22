@@ -3,12 +3,14 @@ import type { FormEvent } from "react";
 import type { TaskPeriod } from "../../types";
 import "./AddTaskModal.css";
 
+// Define the props required by the add task modal.
 interface AddTaskModalProps {
   defaultPeriod: TaskPeriod;
   onAddTask: (title: string, image: string, period: TaskPeriod[]) => void;
   onCancel: () => void;
 }
 
+// Define the suggested tasks and their corresponding emojis.
 const taskSuggestions = [
   { title: "Borsta tänderna", image: "🪥" },
   { title: "Klä på mig", image: "👕" },
@@ -18,12 +20,14 @@ const taskSuggestions = [
   { title: "Plocka undan", image: "🧹" },
 ];
 
+// Define the available task periods and their display labels.
 const periodOptions: { value: TaskPeriod; label: string }[] = [
   { value: "morning", label: "🌅 Morgon" },
   { value: "day", label: "☀️ Under dagen" },
   { value: "evening", label: "🌙 Kväll" },
 ];
 
+// Initialize the task title and selected periods.
 function AddTaskModal({
   defaultPeriod,
   onAddTask,
@@ -34,6 +38,7 @@ function AddTaskModal({
     defaultPeriod,
   ]);
 
+  // Track the selected task suggestion and its associated periods.
   const [selectedSuggestion, setSelectedSuggestion] = useState<
     (typeof taskSuggestions)[number] | null
   >(null);
@@ -41,6 +46,7 @@ function AddTaskModal({
     defaultPeriod,
   ]);
 
+  // Toggle the selected period in the current list of periods.
   const handlePeriodChange = (
     period: TaskPeriod,
     currentPeriods: TaskPeriod[],
@@ -53,6 +59,7 @@ function AddTaskModal({
     );
   };
 
+  // Render checkboxes for selecting task periods.
   const renderPeriodOptions = (
     periods: TaskPeriod[],
     setPeriods: (periods: TaskPeriod[]) => void,
@@ -75,6 +82,7 @@ function AddTaskModal({
     </fieldset>
   );
 
+  // Validate the form and submit the custom task with the selected periods.
   const handleCustomSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -83,6 +91,7 @@ function AddTaskModal({
     onAddTask(title.trim(), "", customPeriods);
   };
 
+  // Validate the selection and submit the suggested task with the selected periods.
   const handleSuggestionSubmit = () => {
     if (!selectedSuggestion || suggestionPeriods.length === 0) return;
 
@@ -132,8 +141,7 @@ function AddTaskModal({
 
         <div className="task-suggestions">
           {taskSuggestions.map((suggestion) => {
-            const isSelected =
-              selectedSuggestion?.title === suggestion.title;
+            const isSelected = selectedSuggestion?.title === suggestion.title;
 
             return (
               <button
@@ -169,11 +177,7 @@ function AddTaskModal({
         </button>
       </section>
 
-      <button
-        className="add-task-cancel"
-        type="button"
-        onClick={onCancel}
-      >
+      <button className="add-task-cancel" type="button" onClick={onCancel}>
         Avbryt
       </button>
     </div>

@@ -5,6 +5,7 @@ import TaskList from "./TaskList";
 import type { TaskPeriod } from "../../types";
 
 describe("TaskList", () => {
+  // Test that an empty task list displays a message.
   it("visar ett meddelande när listan är tom", () => {
     render(
       <TaskList
@@ -19,6 +20,7 @@ describe("TaskList", () => {
     expect(screen.getByText("Inga uppgifter ännu.")).toBeInTheDocument();
   });
 
+  // Test that the task title is displayed when the list contains a task.
   it("visar uppgiftens titel när listan innehåller en uppgift", () => {
     const task = {
       id: 1,
@@ -44,6 +46,7 @@ describe("TaskList", () => {
     expect(screen.getByText("Borsta tänderna")).toBeInTheDocument();
   });
 
+  // Test that onComplete is called with the task ID and period when the user clicks the complete button.
   it("anropar onComplete när användaren klickar på Klar", () => {
     const onComplete = jest.fn();
 

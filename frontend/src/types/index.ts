@@ -1,3 +1,4 @@
+// Define the types and interfaces for profiles, tasks, periods, and task statuses.
 export type TaskPeriod = "morning" | "day" | "evening";
 
 export type TaskStatus = "todo" | "done";

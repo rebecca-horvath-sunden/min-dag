@@ -1,3 +1,5 @@
+// Initialize the Express server and configure the port.
+// Enable CORS and JSON request body parsing.
 const express = require("express");
 const cors = require("cors");
 
@@ -7,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Profiler
+// Define the initial profiles with their IDs, names, and avatars
 const profiles = [
   {
     id: 1,
@@ -26,7 +28,7 @@ const profiles = [
   },
 ];
 
-// Uppgifter
+// Define the initial tasks for each profile, including their periods and statuses.
 const tasks = [
   // Ines
   {
@@ -107,12 +109,12 @@ const tasks = [
   },
 ];
 
-// Hämta alla profiler
+// Return all profiles as JSON.
 app.get("/api/profiles", (req, res) => {
   res.json(profiles);
 });
 
-// Skapa en profil
+// Create a new profile and validate the required name.
 app.post("/api/profiles", (req, res) => {
   const { name, avatar } = req.body;
 
@@ -122,6 +124,7 @@ app.post("/api/profiles", (req, res) => {
     });
   }
 
+  // Create a new profile, add it to the profiles array, and return it as JSON.
   const newProfile = {
     id: Date.now(),
     name: name.trim(),
@@ -133,6 +136,9 @@ app.post("/api/profiles", (req, res) => {
   res.status(201).json(newProfile);
 });
 
+// Find the profile by ID and return an error if it does not exist.
+// Remove the profile and all tasks associated with it.
+// Return a 204 status code to indicate successful deletion.
 app.delete("/api/profiles/:id", (req, res) => {
   const profileId = Number(req.params.id);
 
@@ -146,10 +152,10 @@ app.delete("/api/profiles/:id", (req, res) => {
     });
   }
 
-  // Ta bort profilen.
+  
   profiles.splice(profileIndex, 1);
 
-  // Ta bort alla uppgifter som tillhör profilen.
+  
   for (let i = tasks.length - 1; i >= 0; i--) {
     if (tasks[i].profileId === profileId) {
       tasks.splice(i, 1);
@@ -159,15 +165,18 @@ app.delete("/api/profiles/:id", (req, res) => {
   res.status(204).send();
 });
 
-// Hämta alla uppgifter
+// Return all tasks as JSON.
 app.get("/api/tasks", (req, res) => {
   res.json(tasks);
 });
 
+// Validate the profile, task title, and selected periods.
+// Initialize the task status for each selected period.
+// Create the new task, add it to the tasks array, and return it as JSON.
 app.post("/api/tasks", (req, res) => {
   const { profileId, title, image, period } = req.body;
 
-  // Kontrollera att profilen finns.
+  
   const profileExists = profiles.some(
     (profile) => profile.id === Number(profileId),
   );
@@ -178,7 +187,7 @@ app.post("/api/tasks", (req, res) => {
     });
   }
 
-  // Kontrollera att alla tidsperioder är giltiga.
+  
   const validPeriods = ["morning", "day", "evening"];
 
   if (
@@ -215,7 +224,9 @@ app.post("/api/tasks", (req, res) => {
   res.status(201).json(newTask);
 });
 
-// Uppdatera status för en viss tidsperiod
+// Validate the requested period and status, then find the task.
+// Check that the task belongs to the selected period.
+// Update the task status and return the updated task as JSON.
 app.patch("/api/tasks/:id", (req, res) => {
   const taskId = Number(req.params.id);
   const { period, status } = req.body;
@@ -254,7 +265,7 @@ app.patch("/api/tasks/:id", (req, res) => {
   res.json(task);
 });
 
-// Starta en ny dag för en profil
+// Reset all task statuses for the selected profile and return the updated tasks.
 app.patch("/api/profiles/:id/new-day", (req, res) => {
   const profileId = Number(req.params.id);
 
@@ -279,6 +290,8 @@ app.patch("/api/profiles/:id/new-day", (req, res) => {
   res.json(profileTasks);
 });
 
+// Find the task by ID and return an error if it does not exist.
+// Remove the task and return a 204 status code to indicate successful deletion.
 app.delete("/api/tasks/:id", (req, res) => {
   const taskId = Number(req.params.id);
   const taskIndex = tasks.findIndex((task) => task.id === taskId);
@@ -294,13 +307,14 @@ app.delete("/api/tasks/:id", (req, res) => {
   res.status(204).send();
 });
 
-// Testa att backend fungerar
+// Return a JSON message to confirm that the backend is running.
 app.get("/", (req, res) => {
   res.json({
     message: "Backend fungerar!",
   });
 });
 
+// Start the server on the configured port.
 app.listen(PORT, () => {
   console.log(`Servern körs på http://localhost:${PORT}`);
 });

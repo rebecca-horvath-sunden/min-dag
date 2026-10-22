@@ -56,7 +56,6 @@ body {
   margin-bottom: 1.5rem;
 }
 
-/* En ruta för varje tidsperiod */
 .task-period {
   width: 100%;
   margin: 1.25rem 0;
@@ -68,7 +67,6 @@ body {
   box-shadow: var(--shadow);
 }
 
-/* Rubrik med linje under */
 .task-period-title {
   margin: 0 0 1rem;
   padding-bottom: 0.75rem;
@@ -76,7 +74,6 @@ body {
   font-size: 1.35rem;
 }
 
-/* Knappen för att lägga till en uppgift */
 .add-task-button {
   display: block;
   min-height: 2.75rem;
@@ -100,7 +97,6 @@ body {
   box-shadow: var(--shadow);
 }
 
-/* Jag är klar-knappen */
 .finished-button {
   display: block;
   min-height: 3rem;
@@ -123,7 +119,6 @@ body {
   transform: translateY(-0.09rem);
 }
 
-/* Meddelande när alla uppgifter är klara */
 .finished-message {
   max-width: 32rem;
   margin: 1rem auto 2rem;
@@ -137,7 +132,6 @@ body {
   text-align: center;
 }
 
-/* Ny dag */
 .new-day-button {
   display: block;
   min-height: 2.75rem;
