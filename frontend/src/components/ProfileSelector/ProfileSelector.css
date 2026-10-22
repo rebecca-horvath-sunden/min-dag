@@ -1,0 +1,112 @@
+.profile-selector {
+  width: 100%;
+  padding-top: 0;
+  padding-bottom: 1rem;
+  border-bottom: 0.0625rem solid var(--border);
+}
+
+.profile-selector h2 {
+  font-size: 1.4rem;
+  margin-top: 0.5rem;
+}
+
+.profile-list {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 1rem;
+}
+
+.profile-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.125rem 0.32rem;
+  border: 0.0625rem solid var(--border);
+  border-radius: 0.875rem;
+  background-color: #fff;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Gemensam hover för profilrutor och skapa profil */
+.profile-item:hover,
+.profile-create-button:hover {
+  background-color: rgb(120, 47, 161);
+  border-color: rgb(120, 47, 161);
+  color: #fff;
+}
+
+/* Texten i profilknappen följer hover-färgen */
+.profile-item:hover .profile-select-button {
+  background-color: transparent;
+  color: #fff;
+}
+
+/* Aktiv profil */
+.profile-item:has(.profile-select-button--active) {
+  background-color: #e5d7f7;
+  border-color: #7045a5;
+}
+
+.profile-select-button--active {
+  background-color: transparent;
+  color: #392454;
+  box-shadow: none;
+}
+
+/* Hover på aktiv profil */
+.profile-item:has(.profile-select-button--active):hover {
+  background-color: rgb(120, 47, 161);
+  border-color: rgb(120, 47, 161);
+}
+
+/* Profilknapp */
+.profile-select-button {
+  min-height: 3.25rem;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  border-radius: 0.625rem;
+  font-size: 1.2rem;
+  transition: color 0.2s ease;
+}
+
+/* Ta bort profil */
+.profile-delete-button {
+  width: 1.75rem;
+  height: 1.75rem;
+  min-height: 1.75rem;
+  padding: 0;
+  border: 0.0625rem solid #e5caca;
+  border-radius: 0.4375rem;
+  background-color: #fff;
+  color: #8b4545;
+  font-size: 0.75rem;
+  transition: background-color 0.2s ease;
+}
+
+/* Skapa profil */
+.profile-create-button {
+  min-height: 2.75rem;
+  border: 0.0625rem solid var(--text);
+  border-radius: 0.625rem;
+  padding: 0.625rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Mobil */
+@media (max-width: 37.5rem) {
+  .profile-list {
+    gap: 0.625rem;
+  }
+
+  .profile-item {
+    max-width: 100%;
+  }
+
+  .profile-select-button {
+    overflow-wrap: anywhere;
+  }
+}

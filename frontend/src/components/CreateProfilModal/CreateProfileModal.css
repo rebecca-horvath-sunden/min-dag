@@ -1,0 +1,127 @@
+.create-profile-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 14px;
+  width: calc(100% - 32px);
+  max-width: 480px;
+  margin: 24px auto;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.create-profile-form h2 {
+  margin: 0;
+  text-align: center;
+}
+
+.create-profile-form label {
+  font-weight: 600;
+}
+
+.profile-name-input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.avatar-fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.avatar-fieldset legend {
+  padding: 0 6px;
+  font-weight: 600;
+}
+
+.avatar-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.avatar-option {
+  width: 44px;
+  height: 44px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  font-size: 1.4rem;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.avatar-option:hover {
+  background: var(--accent-bg);
+}
+
+.avatar-option--active {
+  background: var(--accent-bg);
+  border: 2px solid var(--accent);
+}
+
+.selected-avatar {
+  margin: 0;
+  text-align: center;
+}
+
+.profile-form-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.profile-form-actions button {
+  flex: 0 1 auto;
+  min-height: 38px;
+  padding: 7px 12px;
+  font-size: 0.9rem;
+  border-radius: 10px;
+}
+
+.profile-submit-button {
+  background-color: var(--accent-bg);
+}
+
+.profile-submit-button:hover {
+  background-color: #e2d2f5;
+}
+
+.profile-cancel-button {
+  background-color: #fff;
+  border: 1px solid var(--border);
+  color: var(--text);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.profile-cancel-button:hover {
+  background-color: #fbeeee;
+  border-color: #e5caca;
+}
+
+@media (max-width: 600px) {
+  .create-profile-form {
+    margin: 16px auto;
+    padding: 16px;
+  }
+
+  .profile-form-actions {
+    flex-direction: row;
+  }
+}

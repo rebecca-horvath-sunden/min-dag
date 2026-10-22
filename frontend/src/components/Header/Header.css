@@ -1,0 +1,11 @@
+header {
+  width: 100%;
+  text-align: center;
+  padding: 0.2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+header h1 {
+  margin: 24px 0;
+  overflow-wrap: break-word;
+}

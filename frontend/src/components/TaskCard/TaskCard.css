@@ -1,0 +1,117 @@
+/* En rad för varje uppgift */
+.task-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  min-width: 0;
+  padding: 0.5rem;
+  border: 0.0625rem solid var(--border);
+  border-radius: 0.75rem;
+  background-color: #fffaf4;
+  font-size: 1rem;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* Ikon och uppgiftstext */
+.task-card > span {
+  flex-shrink: 0;
+}
+
+.task-card > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+
+/* Knapp för att markera eller ångra en uppgift */
+.task-status-button {
+  flex-shrink: 0;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0.5rem;
+  border: 0.125rem solid transparent;
+  border-radius: 0.75rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.task-status-button--todo {
+  border: 0.0625rem solid #e5caca;
+  border-radius: 0.625rem;
+  background-color: #fff;
+}
+
+.task-status-button--done {
+  background-color: #378650;
+  border-color: #378650;
+  color: #fff;
+}
+
+.task-status-button--todo:hover {
+  background-color: #378650;
+  border-color: #378650;
+  color: #fff;
+}
+
+.task-status-button--done:hover {
+  border-color: #28663d;
+  background-color: #28663d;
+  color: #fff;
+}
+
+/* Knapp för att ta bort en uppgift */
+.task-delete-button {
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.0625rem solid #e5caca;
+  border-radius: 0.625rem;
+  background-color: #fff;
+  color: #8b4545;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.task-delete-button:hover {
+  border-color: #f30303;
+  background-color: #fff5f5;
+  color: #f30303;
+}
+
+/* Större skärmar */
+@media (min-width: 640px) {
+  .task-card {
+    font-size: 1.2rem;
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .task-status-button,
+  .task-delete-button {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+  }
+
+  .task-delete-button {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}

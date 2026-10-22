@@ -1,0 +1,189 @@
+/* Hela formuläret */
+.add-task-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: calc(100% - 2rem);
+  max-width: 45rem;
+  margin: 1rem auto;
+  padding: 1rem;
+  border: 0.0625rem solid var(--border);
+  border-radius: 0.875rem;
+  background-color: #fff;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+/* Huvudrubrik */
+.add-task-title {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+/* Sektioner */
+.add-task-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.add-task-section h4 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+/* Formulär för egen uppgift */
+.add-task-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+  width: 100%;
+}
+
+.task-title-field {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.4rem;
+  text-align: left;
+}
+
+.task-title-field label {
+  font-weight: 600;
+}
+
+.task-title-field input {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.625rem 0.75rem;
+  border: 0.0625rem solid var(--border);
+  border-radius: 0.5rem;
+}
+
+/* Val av tidpunkt */
+.add-task-periods {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  margin: 0;
+  padding: 1rem;
+  border: 0.0625rem solid var(--border);
+  border-radius: 0.75rem;
+}
+
+.add-task-periods legend {
+  padding: 0 0.5rem;
+  font-weight: 600;
+}
+
+.add-task-periods label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  cursor: pointer;
+}
+
+/* Förslag på uppgifter */
+.task-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.task-suggestion-button {
+  min-height: 2.75rem;
+  padding: 0.625rem 0.75rem;
+  border: 0.0625rem solid var(--border);
+  border-radius: 0.625rem;
+  background-color: #fff;
+  color: var(--text);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.task-suggestion-button:hover {
+  background-color: var(--accent-bg);
+  border-color: var(--accent);
+}
+
+.task-suggestion-button--selected {
+  background-color: var(--accent-bg);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+/* Knappar i formuläret */
+.add-task-action {
+  min-height: 2.75rem;
+  padding: 0.625rem 1rem;
+  border: 0.0625rem solid var(--border);
+  border-radius: 0.625rem;
+  background-color: var(--accent-bg);
+  color: var(--text-h);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.add-task-action:hover:not(:disabled) {
+  background-color: #e2d2f5;
+  border-color: var(--accent);
+}
+
+.add-task-action:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Avbryt */
+.add-task-cancel {
+  align-self: center;
+  min-height: 2.5rem;
+  padding: 0.5rem 1rem;
+  border: 0.0625rem solid var(--border);
+  border-radius: 0.625rem;
+  background-color: #fff;
+  color: var(--text);
+}
+
+.add-task-cancel:hover {
+  background-color: #f8eeee;
+  border-color: #e5caca;
+}
+
+/* Mobil */
+@media (max-width: 37.5rem) {
+  .add-task-modal {
+    gap: 1.25rem;
+    margin: 1rem auto;
+    padding: 1rem;
+  }
+
+  .add-task-periods {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .task-suggestions {
+    flex-direction: column;
+  }
+
+  .task-suggestion-button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .task-suggestion-button,
+  .add-task-action {
+    transition: none;
+  }
+}
