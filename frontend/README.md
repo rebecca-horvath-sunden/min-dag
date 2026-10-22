@@ -59,7 +59,7 @@ Frontend kan använda `VITE_API_URL` för backendens adress. Om variabeln inte a
 
 ## Publicerad app
 
-Appen körs för närvarande lokalt och är ännu inte publicerad.
+https://min-dag-ochre.vercel.app/
 
 ## Tester
 
@@ -73,4 +73,3 @@ npm test
 
 - Utveckla CSS-variablerna i `:root` för mer enhetlig styling.
 - Göra det möjligt att redigera befintliga uppgifter, exempelvis ändra tidpunkt.
-- Publicera appen på internet.
