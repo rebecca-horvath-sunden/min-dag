@@ -5,6 +5,7 @@
     "module": "CommonJS",
     "moduleResolution": "Node",
     "esModuleInterop": true,
+    "noUncheckedSideEffectImports": false,
     "verbatimModuleSyntax": false,
     "types": ["jest", "@testing-library/jest-dom"]
   },
